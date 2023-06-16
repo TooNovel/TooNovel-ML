@@ -6,7 +6,8 @@ from surprise import Dataset, Reader
 import json
 
 def run(user_id):
-    with open('svd_model.pkl', 'rb') as file:
+    print(user_id)
+    with open('svd_model_transferred.pkl', 'rb') as file:
         model = pickle.load(file)
 
     def get_top_n_recommendations(predictions, n=5):
@@ -21,11 +22,11 @@ def run(user_id):
         return top_n
 
     # 데이터 로딩
-    ratings = pd.read_csv('rating.csv')
+    ratings = pd.read_csv('rating_review.csv')
     reader = Reader(rating_scale=(ratings['rating'].min(), ratings['rating'].max()))
     data = Dataset.load_from_df(ratings[['user_id', 'novel_id', 'rating']], reader)
 
-    # 학습 데이터셋 생성
+    # 데이터셋 생성 - 항목 ID 리스트 생성용
     trainset = data.build_full_trainset()
 
     # 예측할 사용자 ID와 해당 사용자가 평가하지 않은 모든 항목 ID 리스트 생성
