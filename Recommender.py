@@ -22,7 +22,7 @@ def run(user_id):
         return top_n
 
     # 데이터 로딩
-    ratings = pd.read_csv('rating_review.csv')
+    ratings = pd.read_csv('application_rating_data.csv')
     reader = Reader(rating_scale=(ratings['rating'].min(), ratings['rating'].max()))
     data = Dataset.load_from_df(ratings[['user_id', 'novel_id', 'rating']], reader)
 

@@ -20,7 +20,7 @@ def run():
 
     column_names = [column[0] for column in cursor.description]
 
-    with open('rating_review.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('application_rating_data.csv', 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(column_names)
         writer.writerows(rows)
