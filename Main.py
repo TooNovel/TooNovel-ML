@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import ModelGenerator
 import Recommender
 import FilterMessage
+import DatabaseToCsv
 
 app = FastAPI()
 
@@ -16,6 +17,7 @@ async def recommender(user_id: int):
 
 @app.put("/")
 async def update():
+    DatabaseToCsv.run()
     ModelGenerator.run()
     
 @app.post("/filter")
